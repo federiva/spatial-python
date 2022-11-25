@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+crossorigin=""></script>
+{% endblock %}
+{% block content %}
+<div class="map-wrapper d-flex justify-content-center">
+  <div id="map-flights"></div>
+</div>
+<script src="{% static 'js/map.js' %}" async defer></script>
+{% endblock %}

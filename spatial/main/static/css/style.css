@@ -1,0 +1,13 @@
+body {
+  background-color: grey;
+}
+
+.map-wrapper {
+  padding: 1rem;
+  margin-top: 4rem;
+}
+
+#map-flights {
+  height: 300px;
+  width: 50%;
+}
