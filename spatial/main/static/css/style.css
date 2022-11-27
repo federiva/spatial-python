@@ -8,6 +8,10 @@ body {
 }
 
 #map-flights {
-  height: 300px;
-  width: 50%;
+  height: 400px;
+  width: 80%;
+}
+
+.dropdown-menu {
+  height: 150px;
 }

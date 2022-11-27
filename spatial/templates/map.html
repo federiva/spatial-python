@@ -9,8 +9,26 @@ integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
 crossorigin=""></script>
 {% endblock %}
 {% block content %}
-<div class="map-wrapper d-flex justify-content-center">
-  <div id="map-flights"></div>
+<div class="row align-items-center">
+  <div class="col-3">
+    <label for="dropdown-larus"><i>Larus Fuscus</i></label>
+    <div id="dropdown-larus" class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Select an individual
+      </button>
+      <ul class="dropdown-menu overflow-auto">
+        {% for individual in individuals %}
+          <li><a class="dropdown-item individual-item" data-individual="{{individual}}">{{individual}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="map-wrapper d-flex justify-content-center">
+      <div id="map-flights"></div>
+    </div>
+  </div>
 </div>
-<script src="{% static 'js/map.js' %}" async defer></script>
+<script src="{% static 'js/index.js' %}" async defer type="module"></script>
+<!-- <script src="{% static 'js/individuals.js' %}" async defer type="module"></script> -->
 {% endblock %}
