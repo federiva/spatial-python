@@ -8,13 +8,17 @@ export const getBounds = location => {
   return [[location.min_lat, location.min_lon], [location.max_lat, location.max_lon]]
 };
 
-export const addMarkers = (data, map) => {
+export const addMarkers = (data, polygon, map) => {
   markers.clearLayers();
+  let points = [];
+  const polygonLayer = L.polygon(polygon, {color: 'red'});
   data.map( individual => {
     const lat = individual.fields.location_lat;
     const lon = individual.fields.location_long;
     const marker = L.marker([lat, lon])
+    points.push([lon, lat])
     markers.addLayer(marker);
   })
+  markers.addLayer(polygonLayer);
   markers.addTo(map);
 };

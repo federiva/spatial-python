@@ -1,5 +1,6 @@
 from main.models import Animal
 from django.core.serializers import serialize
+from main.logic.maps import get_buffered_polygon_from_points
 
 def get_individuals():
   query = list(
@@ -12,10 +13,12 @@ def get_individuals():
 def get_data_from_individual(individual: str) -> dict:
   query = Animal.objects.filter(individual_local_identifier = individual)
   location = __get_location_from_data(query.values())
+  polygon = __get_buffered_polygon(query)
   serialized_data = serialize('json', query)
   return {
     'data': serialized_data,
-    'location': location
+    'location': location,
+    'polygon': polygon
   }
 
 def __get_location_from_data(data: list) -> dict:
@@ -28,3 +31,7 @@ def __get_location_from_data(data: list) -> dict:
     'max_lon': max(long),
   }
 
+def __get_buffered_polygon(query):
+  points = [[x.location_lat, x.location_long] for x in query]
+  buffered_polygon_coords = get_buffered_polygon_from_points(points)
+  return buffered_polygon_coords

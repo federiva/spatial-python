@@ -9,8 +9,9 @@ const getIndividualData = individual => {
     success: function (response) {
       const individualsData = JSON.parse(response.data);
       const location = response.location;
+      const polygon = response.polygon;
       map.fitBounds(getBounds(location));
-      addMarkers(individualsData, map);
+      addMarkers(individualsData, polygon, map);
     }
   });
 };

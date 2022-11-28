@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from main.logic.tracks import get_individuals, get_data_from_individual
-# Create your views here.
+
 
 def render_map(request):
   data = get_individuals()
