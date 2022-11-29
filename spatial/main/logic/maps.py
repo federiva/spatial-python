@@ -31,9 +31,18 @@ def get_buffered_polygon(polygon: GeoSeries, buffer: float = 1) -> GeoSeries:
 
 
 def get_polygon_coordinates(polygon: GeoSeries) -> list:
+  print(polygon.bounds)
   return list(polygon.exterior[0].coords)
 
 def get_buffered_polygon_from_points(points: list) -> list:
   polygon = get_polygon(points)
   buffered_polygon = get_buffered_polygon(polygon)
   return get_polygon_coordinates(buffered_polygon)
+
+def get_bounding_box(points: list) -> list:
+  lon = [float(x[0]) for x in points]
+  lat = [float(x[1]) for x in points]
+  lon_min, lon_max = min(lon), max(lon)
+  lat_min, lat_max = min(lat), max(lat)
+  bound = [[lon_max, lat_max], [lon_min, lat_min]]
+  return lat_min, lon_min, lat_max, lon_max, bound
