@@ -10,7 +10,7 @@ crossorigin=""></script>
 {% endblock %}
 {% block content %}
 <div class="row align-items-center">
-  <div class="col-3">
+  <div class="col-12 m-4">
     <label for="dropdown-larus"><i>Larus Fuscus</i></label>
     <div id="dropdown-larus" class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -22,10 +22,30 @@ crossorigin=""></script>
         {% endfor %}
       </ul>
     </div>
+    <div>
+      <p class="selected-individual">Please select a Gull</p>
+    </div>
   </div>
   <div class="col-9">
     <div class="map-wrapper d-flex justify-content-center">
       <div id="map-flights"></div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="card" style="width:18rem;">
+      <img src="{% static 'img/Lesser_black-backed_gull_2015.jpg' %}" class="card-img-top" alt="Lesser black-backed gull picture">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="https://en.wikipedia.org/wiki/Lesser_black-backed_gull" target="_blank"><i>Larus fuscus</i></a>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted ">Lesser black-backed gull</h6>
+        <p class="card-text text-intro">
+          Here we'll show the observations recorded for this individual as well as the amount of flights within the bounding box
+        </p>
+        <p class="card-text n-observations"></p>
+        <p class="card-text n-flights"></p>
+        
+      </div>
     </div>
   </div>
 </div>

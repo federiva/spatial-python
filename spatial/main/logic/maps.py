@@ -31,7 +31,6 @@ def get_buffered_polygon(polygon: GeoSeries, buffer: float = 1) -> GeoSeries:
 
 
 def get_polygon_coordinates(polygon: GeoSeries) -> list:
-  print(polygon.bounds)
   return list(polygon.exterior[0].coords)
 
 def get_buffered_polygon_from_points(points: list) -> list:

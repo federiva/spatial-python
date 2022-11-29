@@ -13,18 +13,21 @@ def get_individuals():
 
 def get_data_from_individual(individual: str) -> dict:
   query = Animal.objects.filter(individual_local_identifier = individual)
+  n_tracks = query.count()
   location = __get_location_from_data(query.values())
-  polygon = __get_buffered_polygon(query)
   lat_min, lon_min, lat_max, lon_max, bounding_box = get_bounding_box([[x.location_lat, x.location_long] for x in query])
   flights = get_flights_from_bound(lat_min, lon_min, lat_max, lon_max)
-  print(flights)
+  n_flights = 0 if flights is None else len(flights)
   serialized_data = serialize('json', query)
-  return {
+  json_data = {
     'data': serialized_data,
     'location': location,
     'bounding_box': bounding_box,
-    'flights': flights
+    'flights': flights,
+    'n_flights': n_flights,
+    'n_tracks': n_tracks
   }
+  return json_data
 
 def __get_location_from_data(data: list) -> dict:
   long = [x.get('location_long') for x in data]
